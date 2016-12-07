@@ -6,7 +6,7 @@ import {
   View,
   Navigator,
   TouchableHighlight,
-  LinkingIOS,
+  Linking,
   TextInput
 } from 'react-native';
 
@@ -14,8 +14,6 @@ import EditNote from './EditNote';
 import Separator from './../Helpers/Separator';
 import AutoLinker from 'autolinker';
 import HTMLView from 'react-native-htmlview';
-
-let URLHandler = React.NativeModules.URLHandler;
 
 let styles = StyleSheet.create({
   container: {
@@ -45,7 +43,7 @@ let styles = StyleSheet.create({
   },
 });
 
-class ViewNote extends React.Component{
+class ViewNote extends React.Component {
   constructor(props) {
     super(props);
 
@@ -59,29 +57,28 @@ class ViewNote extends React.Component{
   componentDidMount() {
     let key = this.props.noteId
 
-    this.setState({title: this.props.noteTitle});
-    this.setState({note: this.props.noteText});
+    this.setState({ title: this.props.noteTitle });
+    this.setState({ note: this.props.noteText });
   }
 
   handleURL(url) {
-    LinkingIOS.canOpenURL(url, (supported) => {
+    Linking.canOpenURL(url).then((supported) => {
       if (!supported) {
-        URLHandler.open(url);
         console.log(`${url}: will only open on device and not simulator`);
       } else {
-        LinkingIOS.openURL(url)
+        Linking.openURL(url)
       }
     });
   }
 
   renderMarkUp() {
     let { noteText } = this.props
-    let htmlRenderedNote = AutoLinker.link(noteText, {phone: true, email: true});
+    let htmlRenderedNote = AutoLinker.link(noteText, { phone: true, email: true });
     return (
       <View>
         <HTMLView
           value={htmlRenderedNote}
-          onLinkPress={(url) => this.handleURL(url) } />
+          onLinkPress={(url) => this.handleURL(url)} />
       </View>
     );
   }
@@ -89,15 +86,15 @@ class ViewNote extends React.Component{
   render() {
     return (
       <View style={styles.container}>
-       <Text style={styles.titleText}>
-         {this.state.title}
-       </Text>
-       <Separator />
-       <TouchableHighlight
-        style={styles.noteText}
-        onPress={this.editNote.bind(this)}>
-         {this.renderMarkUp()}
-       </TouchableHighlight>
+        <Text style={styles.titleText}>
+          {this.state.title}
+        </Text>
+        <Separator />
+        <TouchableHighlight
+          style={styles.noteText}
+          onPress={this.editNote.bind(this)}>
+          {this.renderMarkUp()}
+        </TouchableHighlight>
       </View>
     );
   }
