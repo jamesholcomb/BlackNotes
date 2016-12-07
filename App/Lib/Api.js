@@ -16,11 +16,11 @@ export default api = ({
     return base.fetch('notes', {
       context: this,
       asArray: true
-    }).then((res) => res.json())
+    });
   },
   addNote(text, title) {
     base.push('notes', {
-      title: title, body: text
+      data: { title: title, body: text }
     });
   },
   updateNote(title, text, id) {
