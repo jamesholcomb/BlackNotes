@@ -116,16 +116,16 @@ class Notes extends React.Component{
     let swipeBtns = [{
       text: 'Delete',
       backgroundColor: 'red',
-      underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
+      underlayColor: 'rgba(0, 0, 0, 0.6)',
       onPress: () => { this.deleteNote(rowData) }
     }];
 
     return (
       <Swipeout right={swipeBtns}
-        autoClose='true'
+        autoClose
         backgroundColor= 'transparent'>
         <TouchableHighlight
-          underlayColor='rgba(192,192,192,1,0.6)'
+          underlayColor='rgba(192,192,192,0.6)'
           onPress={this.viewNote.bind(this, rowData)} >
           <View>
             <View style={styles.rowContainer}>
