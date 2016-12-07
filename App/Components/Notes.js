@@ -1,24 +1,27 @@
-import React from 'react-native';
-import ViewNote from './ViewNote';
-import api from './../Lib/Api';
-import Separator from './../Helpers/Separator';
-import Swipeout from 'react-native-swipeout';
-import EmptyView from './EmptyView.js';
-import LoadingView from './LoadingView.js';
-import { filter, indexOf, invert, findKey } from 'lodash';
-import Rebase from 're-base';
+import React, { Component } from 'react'
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  Navigator,
+  TextInput,
+  ListView,
+  TouchableHighlight
+} from 'react-native'
+
+import ViewNote from './ViewNote'
+import api from './../Lib/Api'
+import Separator from './../Helpers/Separator'
+import Swipeout from 'react-native-swipeout'
+import EmptyView from './EmptyView'
+import LoadingView from './LoadingView'
+import { filter, indexOf, invert, findKey } from 'lodash'
+import Rebase from 're-base'
 
 let base = Rebase.createClass('https://blacknotes.firebaseio.com/testUser/');
 let ShareManager = React.NativeModules.ShareManager;
 
-let {
-  View,
-  Text,
-  ListView,
-  StyleSheet,
-  TouchableHighlight,
-  TextInput,
-} = React;
 
 let styles = StyleSheet.create({
   container: {

@@ -1,9 +1,12 @@
-import React from 'react-native';
-
-let {
-  View,
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
   Text,
-} = React;
+  View,
+  Navigator,
+  TouchableHighlight
+} from 'react-native';
 
 export default class RenderedHTML extends React.Component{
   createMarkUp() {

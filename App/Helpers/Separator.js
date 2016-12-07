@@ -1,10 +1,12 @@
-import React from 'react-native';
-
-let {
-  View,
+import React, { Component } from 'react';
+import {
+  AppRegistry,
   StyleSheet,
   Text,
-} = React;
+  View,
+  Navigator,
+  TouchableHighlight
+} from 'react-native';
 
 let styles = StyleSheet.create({
   separator: {

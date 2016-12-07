@@ -1,16 +1,16 @@
-import React from 'react-native';
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  Navigator
+} from 'react-native';
+
 import api from './../Lib/Api';
 import Separator from './../Helpers/Separator';
 import simpleStore from 'react-native-simple-store';
 import HTMLView from 'react-native-htmlview';
-
-let {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableHighlight,
-} = React;
 
 let styles = StyleSheet.create({
   container: {

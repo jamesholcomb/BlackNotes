@@ -1,15 +1,16 @@
-import React from 'react-native';
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  Navigator
+} from 'react-native';
+
 import api from './../Lib/Api';
 import Separator from './../Helpers/Separator';
 import dismissKeyboard from 'dismissKeyboard';
 
-let {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableHighlight,
-} = React;
 
 let styles = StyleSheet.create({
   container: {

@@ -1,14 +1,15 @@
-import React from 'react-native';
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  Navigator,
+  TouchableHighlight
+} from 'react-native';
+
 import Notes from './Notes.js'
 import CreateNote from './CreateNote'
-
-let {
-  View,
-  Text,
-  StyleSheet,
-  TouchableHighlight,
-} = React;
-
 
 let styles = StyleSheet.create({
   container: {

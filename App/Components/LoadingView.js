@@ -1,11 +1,11 @@
-import React from 'react-native';
-
-let {
-  View,
-  Text,
+import React, { Component } from 'react';
+import {
+  AppRegistry,
   StyleSheet,
-  ActivityIndicatorIOS,
-} = React;
+  Text,
+  View,
+  Navigator
+} from 'react-native';
 
 let styles = StyleSheet.create({
   loading: {

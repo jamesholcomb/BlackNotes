@@ -1,14 +1,19 @@
-import React from 'react-native';
-import Main from './App/Components/Main';
-import CreateNote from './App/Components/CreateNote';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
 
-let {
+import React, { Component } from 'react';
+import {
   AppRegistry,
   StyleSheet,
   Text,
   View,
-  NavigatorIOS,
-} = React;
+  Navigator
+} from 'react-native';
+
+import Main from './App/Components/Main'
 
 let styles = StyleSheet.create({
   container:{
@@ -27,7 +32,7 @@ class BlackNotes extends React.Component {
 
   render() {
     return (
-      <NavigatorIOS
+      <Navigator
         ref="nav"
         style={styles.container}
         initialRoute={{
@@ -41,4 +46,3 @@ class BlackNotes extends React.Component {
 };
 
 AppRegistry.registerComponent('BlackNotes', () => BlackNotes);
-

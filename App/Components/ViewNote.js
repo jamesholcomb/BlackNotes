@@ -1,17 +1,19 @@
-import React from 'react-native';
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  Navigator,
+  TouchableHighlight,
+  LinkingIOS,
+  TextInput
+} from 'react-native';
+
 import EditNote from './EditNote';
 import Separator from './../Helpers/Separator';
 import AutoLinker from 'autolinker';
 import HTMLView from 'react-native-htmlview';
-
-let {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableHighlight,
-  LinkingIOS,
-} = React;
 
 let URLHandler = React.NativeModules.URLHandler;
 
