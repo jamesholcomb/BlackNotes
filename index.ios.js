@@ -10,10 +10,11 @@ import {
   StyleSheet,
   Text,
   View,
-  Navigator
+  NavigatorIOS
 } from 'react-native';
 
 import Main from './App/Components/Main'
+import CreateNote from './App/Components/CreateNote'
 
 let styles = StyleSheet.create({
   container:{
@@ -32,7 +33,7 @@ class BlackNotes extends React.Component {
 
   render() {
     return (
-      <Navigator
+      <NavigatorIOS
         ref="nav"
         style={styles.container}
         initialRoute={{
