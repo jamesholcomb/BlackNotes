@@ -4,7 +4,9 @@ import {
   StyleSheet,
   Text,
   View,
-  Navigator
+  Navigator,
+  TextInput,
+  TouchableHighlight
 } from 'react-native';
 
 import api from './../Lib/Api';
@@ -98,7 +100,7 @@ class CreateNote extends React.Component{
         style={styles.noteInput}
         value={this.state.note}
         multiline={true}
-        onLayout={0,0,300,600}
+        onLayout={() => {0,0,300,600}}
         onChange={this.handleBodyChange.bind(this)}
         placeholder="Start your note here..." />
         <TouchableHighlight
