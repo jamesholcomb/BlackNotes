@@ -13,15 +13,10 @@ import {
 import ViewNote from './ViewNote'
 import api from './../Lib/Api'
 import Separator from './../Helpers/Separator'
-import Swipeout from 'react-native-swipeout'
+import Swipeout from 'react-native-swipe-out'
 import EmptyView from './EmptyView'
 import LoadingView from './LoadingView'
 import { filter, indexOf, invert, findKey } from 'lodash'
-import Rebase from 're-base'
-
-let base = Rebase.createClass('https://blacknotes.firebaseio.com/testUser/');
-let ShareManager = React.NativeModules.ShareManager;
-
 
 let styles = StyleSheet.create({
   container: {
