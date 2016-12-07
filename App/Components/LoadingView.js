@@ -4,7 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
-  Navigator
+  ActivityIndicator
 } from 'react-native';
 
 let styles = StyleSheet.create({
@@ -19,7 +19,7 @@ class LoadingView extends React.Component{
   render() {
     return (
       <View style={styles.loading}>
-        <ActivityIndicatorIOS size='large'/>
+        <ActivityIndicator size='large'/>
         <Text>Loading notes...</Text>
       </View>
     );
