@@ -54,7 +54,7 @@ class EditNote extends React.Component{
   }
 
   componentDidMount() {
-    let key = this.props.noteId
+    let key = this.props.noteKey
 
     this.setState({title: this.props.noteTitle});
     this.setState({note: this.props.noteText});
@@ -71,7 +71,7 @@ class EditNote extends React.Component{
     api.updateNote(
       value,
       this.state.note,
-      this.props.noteId
+      this.props.noteKey
     );
   }
 
@@ -86,7 +86,7 @@ class EditNote extends React.Component{
     api.updateNote(
       this.state.title,
       value,
-      this.props.noteId
+      this.props.noteKey
     );
   }
 
@@ -123,7 +123,7 @@ class EditNote extends React.Component{
 EditNote.propTypes = {
   noteText: React.PropTypes.string.isRequired,
   noteTitle: React.PropTypes.string.isRequired,
-  noteId: React.PropTypes.string.isRequired,
+  noteKey: React.PropTypes.string.isRequired,
 }
 
 export default EditNote;

@@ -43,11 +43,21 @@ let styles = StyleSheet.create({
   },
 });
 
-class Notes extends React.Component{
-  constructor(props){
+class Item extends React.Component {
+  render() {
+    return (
+      <View style={styles.rowContainer}>
+        <Text style={styles.note}> {this.props.title} </Text>
+      </View>
+    )
+  }
+}
+
+class Notes extends React.Component {
+  constructor(props) {
     super(props);
 
-    this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2})
+    this.ds = new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 })
     this.state = {
       isLoading: true,
       empty: false,
@@ -77,39 +87,36 @@ class Notes extends React.Component{
   }
 
   fetchData() {
-   api.getNotes()
-     .then((data) => {
-       this.setState({
-         dataSource: this.ds.cloneWithRows(data),
-         isLoading: false,
-         empty: false,
-         rawData: data,
-       });
-     })
-     .catch((error) => {
-       console.log(error)
-       this.setState({
-           empty: true,
-         isLoading: false,
-       });
-     });
+    api.getNotes()
+      .then((data) => {
+        this.setState({
+          dataSource: this.ds.cloneWithRows(data),
+          isLoading: false,
+          empty: false,
+          rawData: data,
+        });
+      })
+      .catch((error) => {
+        console.log(error)
+        this.setState({
+          empty: true,
+          isLoading: false,
+        });
+      });
   }
 
   setSearchText(e) {
     let searchText = e.nativeEvent.text;
-    this.setState({searchText});
+    this.setState({ searchText });
 
-    base.fetch('notes', {
-      context: this,
-      asArray: true,
-      then(data){
-        let filteredData = this.filterNotes(searchText, data);
+    api.getNotes()
+      .then((data) => {
+        let filteredData = this.filterNotes(searchText, data.slice());
         this.setState({
           dataSource: this.ds.cloneWithRows(filteredData),
-          rawData: data,
+          rawData: filteredData,
         });
-      }
-    });
+      })
   }
 
   renderRow(rowData) {
@@ -122,15 +129,15 @@ class Notes extends React.Component{
 
     return (
       <Swipeout right={swipeBtns}
+        key={rowData.key}
         autoClose
-        backgroundColor= 'transparent'>
+        backgroundColor='transparent'
+      >
         <TouchableHighlight
           underlayColor='rgba(192,192,192,0.6)'
           onPress={this.viewNote.bind(this, rowData)} >
           <View>
-            <View style={styles.rowContainer}>
-              <Text style={styles.note}> {rowData.title} </Text>
-            </View>
+            <Item title={rowData.title} />
             <Separator />
           </View>
         </TouchableHighlight>
@@ -139,8 +146,12 @@ class Notes extends React.Component{
   }
 
   deleteNote(rowData) {
-    this.setState({searchText:''});
-    api.deleteNote(rowData, this.noteId(rowData));
+    this.setState({ searchText: '' });
+
+    api.deleteNote(rowData.key).then((res) => {      
+      console.log(`Deleted note ${res}`)
+      this.fetchData();
+    })
   }
 
   share(noteText) {
@@ -156,15 +167,16 @@ class Notes extends React.Component{
       passProps: {
         noteText: rowData.body,
         noteTitle: rowData.title,
-        noteId: this.noteId(rowData),
+        //noteId: this.noteId(rowData),
+        noteKey: rowData.key
       }
     });
   }
 
-  noteId(note) {
-    let rawData = this.state.rawData;
-    return findKey(rawData, note)
-  }
+  // noteId(note) {
+  //   let rawData = this.state.rawData;
+  //   return findKey(rawData, note)
+  // }
 
   render() {
     if (this.state.isLoading) {

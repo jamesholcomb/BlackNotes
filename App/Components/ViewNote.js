@@ -55,7 +55,7 @@ class ViewNote extends React.Component {
   }
 
   componentDidMount() {
-    let key = this.props.noteId
+    let key = this.props.noteKey
 
     this.setState({ title: this.props.noteTitle });
     this.setState({ note: this.props.noteText });
@@ -100,14 +100,14 @@ class ViewNote extends React.Component {
   }
 
   editNote(rowData) {
-    let { noteText, noteTitle, noteId } = this.props;
+    let { noteText, noteTitle, noteKey } = this.props;
 
     this.props.navigator.replace({
       component: EditNote,
       passProps: {
-        noteText: noteText,
-        noteTitle: noteTitle,
-        noteId: noteId,
+        noteText,
+        noteTitle,
+        noteKey,
       }
     });
   }
@@ -116,7 +116,7 @@ class ViewNote extends React.Component {
 ViewNote.propTypes = {
   noteText: React.PropTypes.string.isRequired,
   noteTitle: React.PropTypes.string.isRequired,
-  noteId: React.PropTypes.string.isRequired,
+  noteKey: React.PropTypes.string.isRequired,
 }
 
 export default ViewNote;
