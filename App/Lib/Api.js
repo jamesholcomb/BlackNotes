@@ -19,16 +19,16 @@ export default api = ({
     });
   },
   addNote(text, title) {
-    base.push('notes', {
+    return base.push('notes', {
       data: { title: title, body: text }
     });
   },
-  updateNote(title, text, id) {
-    base.update(`notes/${id}`, {
+  updateNote(title, text, key) {
+    return base.update(`notes/${key}`, {
       title: title, body: text
     });
   },
-  deleteNote(text, id) {
-    base.remove(`notes/${id}`);
+  deleteNote(key) {
+    return base.remove(`notes/${key}`);
   }
 });
